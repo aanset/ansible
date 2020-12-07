@@ -1,0 +1,7 @@
+- hosts: kubers
+  tasks:
+  - name: Ansible copy file /etc/apt/sources.list
+    copy:
+      src: /etc/apt/sources.list
+      dest: /etc/apt 
+      force: no
