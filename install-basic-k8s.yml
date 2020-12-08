@@ -17,7 +17,7 @@
       apt_repository:
         repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
         state: present
-        filename: kubernetes
+        filename: kubernetes.list
     - name: Install and Update kubernetes
       apt:
         state: present
