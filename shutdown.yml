@@ -1,0 +1,9 @@
+---
+- hosts: servers
+  become: true
+  become_user: root
+  tasks:
+    - name: Shutdown Host
+      community.general.shutdown:
+        msg : "Shutdown initiated by Ansible"
+        connect_timeout: 5
