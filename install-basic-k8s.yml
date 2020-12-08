@@ -1,28 +1,47 @@
 ---
 - hosts: servers
   become: true
-  become_user: root
+#  become_user: root
   tasks:
-    - name: Install and Update basic package for kubernetes
+    - name: Install APT Transport HTTPS
       apt: 
         state: present
-        name:
-          - apt-transport-https
-          - docker.io 
+        name: apt-transport-https
+        update_cache: true
+    - name: Install Docker
+      apt:
+        state: present
+        name: docker.io
+        update_cache: true
     - name: Add Google Cloud apt key
       apt_key:
         url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
         state: present
-    - name: Add Source list
+    - name: Add kubernetes Source list
       apt_repository:
         repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
         state: present
-        filename: kubernetes.list
-    - name: Install and Update kubernetes
+        filename: 'kubernetes'
+    - name: Install and Update kubelet
       apt:
         state: present
-        name:
-          - kubelet
-          - kubeadm
-          - kubectl
-          - kubernetes-cni
+        name: kubelet
+        update_cache: true
+   - name: Install and Update kubeadm   
+      apt:
+        state: present
+        name: kubeadm
+        update_cache: true
+- host: master
+  become: true
+  tasks
+   - name: Install and Update kubectl   
+      apt:
+        state: present
+        name: kubectl
+        update_cache: true
+   - name: Install and Update kubernetes-cni   
+      apt:
+        state: present
+        name: kubernetes-cni
+        update_cache: true
