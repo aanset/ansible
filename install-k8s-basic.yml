@@ -12,6 +12,10 @@
         state: present
         name: docker.io
         update_cache: true
+    - name: Enable docker
+      service: 
+        name: docker
+        state: started
     - name: Add Google Cloud apt key
       apt_key:
         url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
