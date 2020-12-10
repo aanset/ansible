@@ -4,7 +4,7 @@ node1 ansible_host=192.168.168.17
 node2 ansible_host=192.168.168.19
 
 [masters]
-masters1 ansible_host=192.168.168.15
+master1 ansible_host=192.168.168.15
 
 [kubers]
 kuber1 ansible_host=192.168.168.17
